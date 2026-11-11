@@ -1,0 +1,16 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Runtime data (keep local, don't commit)
+activities.json
+data.json
+
+# Editor / OS noise
+.vscode/
+.idea/
+.DS_Store

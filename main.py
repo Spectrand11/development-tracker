@@ -114,16 +114,15 @@ while True:
                     f"2. In Progress\n"
                     f"3. Completed")
             try:
-                new_status = int("Enter 1 ,2 or 3: ")      
-                if new_status == 1:
-                    print(tracker.track.update_activity(id=update_id,update="Not Started",num=5))
-                elif new_status == 2:
-                    print(tracker.track.update_activity(id=update_id,update="In Progress",num=5))
-                elif new_status == 3:
-                    print(tracker.track.update_activity(id=update_id,update="Completed",num=5))
-                else:
-                    print("Choose 1, 2 or 3!!")
+                new_status = int(input("Enter 1 ,2 or 3: "))    
             except ValueError:
                 print("Choose 1, 2 or 3!!")
-            
-    
+            if new_status == 1:
+                print(tracker.track.update_activity(id=update_id,update="Not Started",num=5))
+            elif new_status == 2:
+                print(tracker.track.update_activity(id=update_id,update="In Progress",num=5))
+            elif new_status == 3:
+                print(tracker.track.update_activity(id=update_id,update="Completed",num=5))
+            else:
+                print("Choose 1, 2 or 3!!")       
+     

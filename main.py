@@ -43,4 +43,20 @@ while True:
             print(f"--description: {action.description}")
             print(f"--date: {action.date}")
             print(f"status: {action.status}")
-            
+    elif option == 3:
+        search_word = input("Enter the search keyword: ")
+        found_activity = tracker.track.search_activity(search_word)
+        if found_activity == []:
+            print("No matching activity was found, view all activities and try again!!")
+        else:
+            for action in found_activity:
+                        print("-----------------------")
+                        print(f"--id: {action.id}")
+                        print(f"--title: {action.title}")
+                        print(f"--category: {action.category}")
+                        print(f"--description: {action.description}")
+                        print(f"--date: {action.date}")
+                        print(f"status: {action.status}")
+    elif option == 4:
+        pass                    
+    

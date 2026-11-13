@@ -16,7 +16,7 @@ print(f"1, Add an activity\n"
 id = 1
 while True:  
     try:
-        option = int(input("Select an option(1-6): "))
+        option = int(input("Select an option(1-8): "))
         if option <= 0 or option > 8:
             print("Enter a valid option(1-8)!!")
             continue
@@ -38,14 +38,17 @@ while True:
         print(tracker.track.add_activity(the_activity))
     elif option == 2:
         all_activities = tracker.track.view_activities()
-        for action in all_activities:
-            print("-----------------------")
-            print(f"--id: {action.id}")
-            print(f"--title: {action.title}")
-            print(f"--category: {action.category}")
-            print(f"--description: {action.description}")
-            print(f"--date: {action.date}")
-            print(f"status: {action.status}")
+        if all_activities == []:
+            print("Activities haven't been loogged yet!!")
+        else:
+            for action in all_activities:
+                print("-----------------------")
+                print(f"--id: {action.id}")
+                print(f"--title: {action.title}")
+                print(f"--category: {action.category}")
+                print(f"--description: {action.description}")
+                print(f"--date: {action.date}")
+                print(f"status: {action.status}")
     elif option == 3:
         search_word = input("Enter the search keyword: ")
         search_word = search_word.lower().strip()
@@ -117,6 +120,7 @@ while True:
                 new_status = int(input("Enter 1 ,2 or 3: "))    
             except ValueError:
                 print("Choose 1, 2 or 3!!")
+                continue
             if new_status == 1:
                 print(tracker.track.update_activity(id=update_id,update="Not Started",num=5))
             elif new_status == 2:
@@ -124,5 +128,28 @@ while True:
             elif new_status == 3:
                 print(tracker.track.update_activity(id=update_id,update="Completed",num=5))
             else:
-                print("Choose 1, 2 or 3!!")       
-     
+                print("Choose 1, 2 or 3!!")  
+    elif option == 5:
+        try:
+            delete_id = int(input("Enter the id of the activity you want to delete: "))
+        except ValueError:
+            print("Enter a valid id!!")
+            continue
+        
+        print("Do you want to proceed with deleting this activity, enter 1 if yes and 2 if no")
+        try:
+            decision = int(input("Enter 1 or 2: "))
+            if decision < 1 or decision > 2:
+                print("Enter 1 if yes or 2 if no")
+                continue
+            elif decision == 2:
+                continue
+            else:
+                print(tracker.track.delete_activity(delete_id))
+                
+        except ValueError:
+            print("Enter 1 if yes or 2 if no")
+            continue
+            
+    elif option == 8:
+         break

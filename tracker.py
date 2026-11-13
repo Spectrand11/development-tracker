@@ -9,6 +9,13 @@ class Tracker:
     def view_activities(self):
         return self.all_activities
     
+    def delete_activity(self,id):
+        for activity in self.all_activities:
+            if activity.id == id:
+                self.all_activities.remove(activity)
+                return f"Deleted successfully!!"
+        return f"An activity with the id was not found, view all activities and try again!!"
+        
     def search_activity(self,keyword):
         found = []
         for activity in self.all_activities:

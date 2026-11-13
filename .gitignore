@@ -1,16 +1,37 @@
 # Byte-compiled / cache
 __pycache__/
 *.py[cod]
+*$py.class
 
 # Virtual environments
 .venv/
 venv/
+env/
 
 # Runtime data (keep local, don't commit)
 activities.json
 data.json
 
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Packaging / build artifacts
+build/
+dist/
+*.egg-info/
+
+# Type checking / linting caches
+.mypy_cache/
+.ruff_cache/
+
 # Editor / OS noise
 .vscode/
 .idea/
 .DS_Store
+
+# Local environment
+.env
+.python-version

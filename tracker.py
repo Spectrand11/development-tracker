@@ -44,6 +44,21 @@ class Tracker:
         return completed, in_progress, not_started 
         
         
+    def category_sum(self):
+        learning = 0
+        project = 0
+        practice = 0
+        
+        for activity in self.all_activities:
+            if activity.category ==  "learning":
+                learning += 1
+            elif activity.category == "project":
+                project += 1
+            else:
+                practice += 1
+        return learning, project, practice
+        
+        
         
         
                     

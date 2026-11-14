@@ -27,8 +27,22 @@ while True:
         unique_id = id
         title = input("Enter it's title: ")
         title = title.strip().lower()
-        category = input("Enter it's category: ")
+        category = ""
+        try:
+            category_input = int(input("Enter 1 if category is learning, 2 if it's a project, 3 if it's Practice: "))
+        except ValueError:
+            print("Enter 1, 2 or 3!!")
+            continue
+        if category_input != 1 and category_input != 2 and category_input != 3:
+            print("Enter 1, 2 or 3!!")
+        elif category_input == 1:
+            category = "Learning"
+        elif category_input == 2:
+            category = "Project"
+        elif category_input == 3:
+            category = "Practice"
         category = category.strip().lower()
+        
         description = input("Enter it's description: ")
         description = description.strip().lower()
         date = input("Enter it's date: ")
@@ -103,7 +117,20 @@ while True:
             new_title = input("Enter the new title: ")
             print(tracker.track.update_activity(id=update_id,update=new_title.strip().lower(),num=1))
         elif field_no == 2:
-            new_category = input("Enter the new category: ")
+            try:
+                category_inp = int(input("Enter 1 if category is learning, 2 if it's a project, 3 if it's Practice: "))
+            except ValueError:
+                print("Enter 1, 2 or 3!!")
+                continue
+            if category_inp != 1 and category_inp != 2 and category_inp != 3:
+                print("Enter 1, 2 or 3!!")
+            elif category_inp == 1:
+                new_category = "Learning"
+            elif category_inp == 2:
+                new_category = "Project"
+            elif category_inp == 3:
+                new_category = "Practice"
+            new_category = category.strip().lower()
             print(tracker.track.update_activity(id=update_id,update=new_category.strip().lower(),num=2))
         elif field_no == 3:
             new_desc = input("Enter the new description: ")
@@ -166,8 +193,14 @@ while True:
               f"Completed: {completed}\n"
               f"In Progress: {inprogress}\n"
               f"Not Started: {notstarted}")
+    elif option == 7:
+        learning, project, practice = tracker.track.category_sum()
         
-    
+        print("========CATEGORY SUMMARY========")
+        print(f"1. Learning: {learning}\n"
+              f"2. Projects: {project}\n"
+              f"3. Practice: {practice}"
+              )
             
     elif option == 8:
          break

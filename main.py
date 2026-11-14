@@ -150,6 +150,24 @@ while True:
         except ValueError:
             print("Enter 1 if yes or 2 if no")
             continue
+    elif option == 6:
+        all = 0
+        count = 0
+        total = tracker.track.all_activities
+        if total == []:
+            all = 0
+        else:
+            for item in total:
+                count+=1
+        completed, inprogress, notstarted = tracker.track.progress_sum()
+        print("========PROGRESS SUMMARY========")
+        print(f"Total activities: {count}\n"
+              
+              f"Completed: {completed}\n"
+              f"In Progress: {inprogress}\n"
+              f"Not Started: {notstarted}")
+        
+    
             
     elif option == 8:
          break

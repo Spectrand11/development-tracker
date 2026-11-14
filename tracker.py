@@ -29,7 +29,24 @@ class Tracker:
         for activity in self.all_activities:
             if activity.id == id:
                 return activity
-            
+    def progress_sum(self):
+        completed = 0
+        in_progress = 0
+        not_started = 0
+        
+        for activity in self.all_activities:
+            if activity.status ==  "Not Started":
+                not_started += 1
+            elif activity.status == "In Progress":
+                in_progress += 1
+            else:
+                completed += 1
+        return completed, in_progress, not_started 
+        
+        
+        
+        
+                    
     def update_activity(self,id,update,num):
         for activity in self.all_activities:
             if activity.id == id:

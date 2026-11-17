@@ -1,5 +1,6 @@
 import activity
 import tracker
+from datetime import datetime
 
 print("=============================")
 print("PERSONAL DEVELOPMENT TRACKER")
@@ -27,6 +28,9 @@ while True:
         unique_id = id
         title = input("Enter it's title: ")
         title = title.strip().lower()
+        if title == "":
+            print("Enter a valid title!!")
+            continue
         category = ""
         try:
             category_input = int(input("Enter 1 if category is learning, 2 if it's a project, 3 if it's Practice: "))
@@ -35,6 +39,7 @@ while True:
             continue
         if category_input != 1 and category_input != 2 and category_input != 3:
             print("Enter 1, 2 or 3!!")
+            continue
         elif category_input == 1:
             category = "Learning"
         elif category_input == 2:
@@ -45,7 +50,15 @@ while True:
         
         description = input("Enter it's description: ")
         description = description.strip().lower()
-        date = input("Enter it's date: ")
+        if description == "":
+            print("Enter a valid description!!")
+            continue
+        parse = input("Enter the date in format YYYY-MM-DD: ")
+        try:
+            date = datetime.strptime(parse, "%Y-%m-%d")
+        except ValueError:
+            print("Enter a valid date in format YYYY-MM-DD")
+            continue          
         status = "Not Started"
         id += 1
         the_activity = activity.Activity(unique_id,title,category,description,date,status)
@@ -66,6 +79,9 @@ while True:
     elif option == 3:
         search_word = input("Enter the search keyword: ")
         search_word = search_word.lower().strip()
+        if search_word == "":
+            print("Enter a valid search keyword!!")
+            continue
         found_activity = tracker.track.search_activity(search_word)
         if found_activity == []:
             print("No matching activity was found, view all activities and try again!!")
@@ -85,8 +101,9 @@ while True:
             print("Enter a valid id!!")                    
             continue
         found = tracker.track.current(update_id)
-        if found == None:
+        if found is None:
             print("No matching activity was found, view all activities and try again!!")
+            continue
         else:
             print("====ACTIVITY FOUND====")
             print("-----------------------")
@@ -115,7 +132,11 @@ while True:
         
         if field_no == 1:
             new_title = input("Enter the new title: ")
-            print(tracker.track.update_activity(id=update_id,update=new_title.strip().lower(),num=1))
+            new_title = new_title.strip().lower()
+            if new_title == "":
+                print("Enter a valid title!!")
+                continue
+            print(tracker.track.update_activity(id=update_id,update=new_title,num=1))
         elif field_no == 2:
             try:
                 category_inp = int(input("Enter 1 if category is learning, 2 if it's a project, 3 if it's Practice: "))
@@ -124,17 +145,22 @@ while True:
                 continue
             if category_inp != 1 and category_inp != 2 and category_inp != 3:
                 print("Enter 1, 2 or 3!!")
+                continue
             elif category_inp == 1:
                 new_category = "Learning"
             elif category_inp == 2:
                 new_category = "Project"
             elif category_inp == 3:
                 new_category = "Practice"
-            new_category = category.strip().lower()
+            new_category = new_category.strip().lower()
             print(tracker.track.update_activity(id=update_id,update=new_category.strip().lower(),num=2))
         elif field_no == 3:
             new_desc = input("Enter the new description: ")
-            print(tracker.track.update_activity(id=update_id,update=new_desc.strip().lower(),num=3))
+            new_desc = new_desc.strip().lower()
+            if new_desc == "":
+                print("Enter a valid description!!")
+                continue
+            print(tracker.track.update_activity(id=update_id,update=new_desc,num=3))
         elif field_no == 4:
             new_date = input("Enter the new date: ")
             print(tracker.track.update_activity(id=update_id,update=new_date,num=4))

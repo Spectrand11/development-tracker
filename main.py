@@ -55,10 +55,11 @@ while True:
             continue
         parse = input("Enter the date in format YYYY-MM-DD: ")
         try:
-            date = datetime.strptime(parse, "%Y-%m-%d")
+            datetime.strptime(parse, "%Y-%m-%d")
+            date = parse
         except ValueError:
             print("Enter a valid date in format YYYY-MM-DD")
-            continue          
+            continue      
         status = "Not Started"
         id += 1
         the_activity = activity.Activity(unique_id,title,category,description,date,status)
@@ -162,7 +163,13 @@ while True:
                 continue
             print(tracker.track.update_activity(id=update_id,update=new_desc,num=3))
         elif field_no == 4:
-            new_date = input("Enter the new date: ")
+            new_parse = input("Enter the new date in format YYYY-MM-DD: ")
+            try:
+                datetime.strptime(new_parse, "%Y-%m-%d")
+                new_date = new_parse
+            except ValueError:
+                print("Enter a valid date in format YYYY-MM-DD")
+                continue 
             print(tracker.track.update_activity(id=update_id,update=new_date,num=4))
         elif field_no == 5:
             print("Select new status: \n"

@@ -7,10 +7,16 @@ __pycache__/
 .venv/
 venv/
 env/
+ENV/
 
 # Runtime data (keep local, don't commit)
 activities.json
 data.json
+*.sqlite3
+*.db
+
+# Logs
+*.log
 
 # Testing / coverage
 .pytest_cache/
@@ -26,12 +32,19 @@ dist/
 # Type checking / linting caches
 .mypy_cache/
 .ruff_cache/
+.pyright/
+
+# Jupyter
+.ipynb_checkpoints/
 
 # Editor / OS noise
 .vscode/
 .idea/
+*.swp
 .DS_Store
 
 # Local environment
 .env
+.env.*
+!.env.example
 .python-version
